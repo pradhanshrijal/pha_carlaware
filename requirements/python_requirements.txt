@@ -1,0 +1,7 @@
+virtualenv
+carla==0.9.15
+py_trees
+networkx
+tabulate
+transforms3d
+pygame
