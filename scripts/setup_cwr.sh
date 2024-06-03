@@ -10,12 +10,15 @@ PHA_PARENT="${PHA_PARENT:=/home/${USER}/schreibtisch}"
 
 # Install Requirements
 sudo apt install python3 python3-pip -y
-python3 -m pip install gdown
+python3 -m pip install gdown==4.6.1
 #
 
 # Parent Folder
 if [ ! -d "$PHA_PARENT" ]; then
     mkdir -p $PHA_PARENT
+    echo "Setup PHA Parent Path: ${PHA_PARENT}"
+else
+    echo "PHA Parent Path already set: ${PHA_PARENT}"
 fi
 #
 
@@ -24,6 +27,9 @@ cd $PHA_PARENT
 
 if [ ! -d pha_docker_files ]; then
     git clone https://github.com/pradhanshrijal/pha_docker_files --recursive
+    echo "Setup PHA Docker Files."
+else
+    echo "PHA Docker Files already set."
 fi
 
 cd pha_docker_files
@@ -31,6 +37,9 @@ cd pha_docker_files
 if [[ -z "${PHA_HOME}" ]]; then
     echo "# PHA" >> /home/${USER}/.bashrc
     echo "source ${PHA_PARENT}/pha_docker_files/docker_share/scripts/setup/export_pha.sh" >> /home/${USER}/.bashrc
+    echo "Setup PHA Home Path: ${PHA_HOME}"
+else
+    echo "PHA Home already set: ${PHA_HOME}"
 fi
 #
 
@@ -39,11 +48,17 @@ cd ${ADDONS_PHA}
 
 if [ ! -d pha_carlaware ]; then
     git clone https://github.com/pradhanshrijal/pha_carlaware --recursive
+    echo "Setup PHA CARLAWARE."
+else
+    echo "PHA CARLAWARE already set."
 fi
 
-if [[ -z "${CARLAWARE_PHA}" ]]: then
+if [[ -z "${CARLAWARE_PHA}" ]]; then
     echo "# CARLAWARE" >> /home/${USER}/.bashrc
     echo "source ${ADDONS_PHA}/pha_carlaware/scripts/export_carlaware.sh" >> /home/${USER}/.bashrc
+    echo "Seutp CARLAWARE PHA Path: ${CARLAWARE_PHA}"
+else
+    echo "CARLAWARE PHA Path already set: ${CARLAWARE_PHA}"
 fi
 #
 
@@ -53,18 +68,27 @@ cd ${SIMULATORS_PHA}
 ## Carla
 if [ ! -d carla ]; then
     git clone https://github.com/carla-simulator/carla -b 0.9.15.2
+    echo "Setup Carla Simulator."
+else
+    echo "Carla Simulator already set."
 fi
 
 cd carla/PythonAPI/carla
 
 if [ ! -d dist ]; then
     mkdir dist
+    echo "Carla: Create Dist Dir."
+else
+    echo "Carla: Dist Dir exists."
 fi
 
 cd dist
 
 if [ ! -f carla-0.9.15-py3.10-linux-x86_64.egg ]; then
     wget https://github.com/gezp/carla_ros/releases/download/carla-0.9.15-ubuntu-22.04/carla-0.9.15-py3.10-linux-x86_64.egg
+    echo "Carla: Download Python Egg."
+else
+    echo "Carla: Egg exists."
 fi
 ##
 
@@ -73,31 +97,48 @@ cd ${SIMULATORS_PHA}
 
 if [ ! -d carla_awr ]; then
     mkdir carla_awr
+    echo "Setup OpenPlanner Simulator."
+else
+    echo "OpenPlanner Simulator already set."
 fi
 
 cd carla_awr
 
 if [ ! -d scenario_runner ]; then
     git clone https://github.com/hatem-darweesh/scenario_runner -b openplanner_carla_bridge
+    echo "OP: Setup Scenario Runner."
+else
+    echo "OP: Scenario Runner already set."
 fi
 
 if [ ! -d op_bridge ]; then
     git clone https://github.com/pradhanshrijal/op_bridge -b ros2-humble
+    echo "OP: Setup Bridge."
+else
+    echo "OP: Bridge already set."
 fi
 
 if [ ! -d op_agent ]; then
     git clone https://github.com/pradhanshrijal/op_agent -b ros2-humble
+    echo "OP: Setup Agent."
+else
+    echo "OP: Agent already set."
 fi
 ##
 #
 
 # OpenPlanner Weights
 
+echo "Setup Autoware Weights."
+
 ## Darknet Weights
 cd ${SIMULATORS_PHA}/carla_awr/op_agent/darknet/tlr
 
 if [ ! -f yolov4-bosch.weights ]; then
     gdown 1HmeHff10EMQf-uvwgBPxIqmSv1rSWhZu
+    echo "AW: Download 'yolov4-bosch.weights'."
+else
+    echo "AW: 'yolov4-bosch.weights' exists."
 fi
 ##
 
@@ -106,16 +147,22 @@ cd ${SIMULATORS_PHA}/carla_awr/op_agent/autoware-contents/config/yolov3
 
 if [ ! -f yolov3.weights ]; then
     gdown 1wDOlKaTYvtNxdDf-IvmALx6UZngx19F0
+    echo "AW: Download 'yolov3.weights'."
+else
+    echo "AW: 'yolov3.weights' exists."
 fi
 ##
 
 ## Map Weights
-cd ${SIMULATORS_PHA}/carla_awr/op_agent/autoware-contents/maps
+cd ${SIMULATORS_PHA}/carla_awr/op_agent/autoware-contents/maps/Town01
 
-if [ ! -d Town01 ]; then
+if [ ! -f pointcloud_map.pcd ]; then
     cd ${SIMULATORS_PHA}/carla_awr/op_agent/autoware-contents
     rm -rf maps
-    gdown 1GBcV9uXAq3QVrLfQdqI0LTIRKms_r8kl
+    gdown --folder https://drive.google.com/drive/folders/1GBcV9uXAq3QVrLfQdqI0LTIRKms_r8kl
+    echo "AW: Download Maps: ${SIMULATORS_PHA}/carla_awr/op_agent/autoware-contents/maps"
+else
+    echo "AW: Maps exists: ${SIMULATORS_PHA}/carla_awr/op_agent/autoware-contents/maps"
 fi
 ##
 
@@ -127,12 +174,18 @@ cd ${SSI_PATH}/files
 
 if [ ! -d datasets ]; then
     mkdir datasets
+    echo "AW: Setup Dataset Path: ${SSI_PATH}/files/datasets"
+else
+    echo "AW: Dataset Path already set: ${SSI_PATH}/files/datasets"
 fi
 
 cd datasets
 
 if [ ! -d autoware_data ]; then
     mkdir autoware_data
+    echo "AW: Setup Autoware Dataset Path: ${SSI_PATH}/files/datasets/autoware_data"
+else
+    echo "AW: Autoware Dataset Path already set: ${SSI_PATH}/files/datasets/autoware_data"
 fi
 ##
 
@@ -145,10 +198,13 @@ fi
 
 cd yabloc_pose_initializer
 
-if [ ! -d saved_model]; then
+if [ ! -d saved_model ]; then
     wget https://s3.ap-northeast-2.wasabisys.com/pinto-model-zoo/136_road-segmentation-adas-0001/resources.tar.gz
     tar -xzf resources.tar.gz
     rm -rf resources.tar.gz
+    echo "AW: Download 'yabloc_pose_initializer'."
+else
+    echo "AW: 'yabloc_pose_initializer' exists."
 fi
 ##
 
@@ -164,6 +220,9 @@ cd image_projection_based_fusion
 if [ ! -f pts_voxel_encoder_pointpainting.onnx ]; then
     wget https://awf.ml.dev.web.auto/perception/models/pointpainting/v4/pts_voxel_encoder_pointpainting.onnx \
         https://awf.ml.dev.web.auto/perception/models/pointpainting/v4/pts_backbone_neck_head_pointpainting.onnx
+    echo "AW: Download 'image_projection_based_fusion'."
+else
+    echo "AW: 'image_projection_based_fusion' exists."
 fi
 ##
 
@@ -180,6 +239,9 @@ if [ ! -f hdl-64.onnx ]; then
     wget https://awf.ml.dev.web.auto/perception/models/lidar_apollo_instance_segmentation/vlp-16.onnx \
        https://awf.ml.dev.web.auto/perception/models/lidar_apollo_instance_segmentation/hdl-64.onnx \
        https://awf.ml.dev.web.auto/perception/models/lidar_apollo_instance_segmentation/vls-128.onnx
+    echo "AW: Download 'lidar_apollo_instance_segmentation'."
+else
+    echo "AW: 'lidar_apollo_instance_segmentation' exists."
 fi
 ##
 
@@ -197,6 +259,9 @@ if [ ! -f pts_voxel_encoder_centerpoint.onnx ]; then
        https://awf.ml.dev.web.auto/perception/models/centerpoint/v2/pts_backbone_neck_head_centerpoint.onnx \
        https://awf.ml.dev.web.auto/perception/models/centerpoint/v2/pts_voxel_encoder_centerpoint_tiny.onnx \
        https://awf.ml.dev.web.auto/perception/models/centerpoint/v2/pts_backbone_neck_head_centerpoint_tiny.onnx
+    echo "AW: Download 'lidar_centerpoint'."
+else
+    echo "AW: 'lidar_centerpoint' exists."
 fi
 ##
 
@@ -218,6 +283,9 @@ if [ ! -f yolov3.onnx ]; then
        https://awf.ml.dev.web.auto/perception/models/yolov5l.onnx \
        https://awf.ml.dev.web.auto/perception/models/yolov5x.onnx \
        https://awf.ml.dev.web.auto/perception/models/coco.names
+    echo "AW: Download 'tensorrt_yolo'."
+else
+    echo "AW: 'tensorrt_yolo' exists."
 fi
 ##
 
@@ -237,6 +305,9 @@ if [ ! -f yolox-tiny.onnx ]; then
        https://awf.ml.dev.web.auto/perception/models/object_detection_yolox_s/v1/yolox-sPlus-T4-960x960-pseudo-finetune.onnx \
        https://awf.ml.dev.web.auto/perception/models/object_detection_yolox_s/v1/yolox-sPlus-T4-960x960-pseudo-finetune.EntropyV2-calibration.table \
        https://awf.ml.dev.web.auto/perception/models/label.txt
+    echo "AW: Download 'tensorrt_yolox'."
+else
+    echo "AW: 'tensorrt_yolox' exists."
 fi
 ##
 
@@ -257,6 +328,9 @@ if [ ! -f traffic_light_classifier_mobilenetv2_batch_1.onnx ]; then
        https://awf.ml.dev.web.auto/perception/models/traffic_light_classifier/v2/traffic_light_classifier_efficientNet_b1_batch_4.onnx \
        https://awf.ml.dev.web.auto/perception/models/traffic_light_classifier/v2/traffic_light_classifier_efficientNet_b1_batch_6.onnx \
        https://awf.ml.dev.web.auto/perception/models/traffic_light_classifier/v2/lamp_labels.txt
+    echo "AW: Download 'traffic_light_classifier'."
+else
+    echo "AW: 'traffic_light_classifier' exists."
 fi
 ##
 
@@ -274,6 +348,9 @@ if [ ! -f tlr_yolox_s_batch_1.onnx ]; then
        https://awf.ml.dev.web.auto/perception/models/tlr_yolox_s/v2/tlr_yolox_s_batch_4.onnx \
        https://awf.ml.dev.web.auto/perception/models/tlr_yolox_s/v2/tlr_yolox_s_batch_6.onnx \
        https://awf.ml.dev.web.auto/perception/models/tlr_yolox_s/v2/tlr_labels.txt
+    echo "AW: Download 'traffic_light_fine_detector'."
+else
+    echo "AW: 'traffic_light_fine_detector' exists."
 fi
 ##
 
@@ -289,8 +366,14 @@ cd traffic_light_ssd_fine_detector
 if [ ! -f mb2-ssd-lite-tlr.onnx ]; then
     wget https://awf.ml.dev.web.auto/perception/models/mb2-ssd-lite-tlr.onnx \
        https://awf.ml.dev.web.auto/perception/models/voc_labels_tl.txt
+    echo "AW: Download 'traffic_light_ssd_fine_detector'."
+else
+    echo "AW: 'traffic_light_ssd_fine_detector' exists."
 fi
 ##
 
 # End - Autoware Datasets
 
+echo "Fin."
+
+cd ${PHA_HOME}

@@ -16,8 +16,8 @@ FROM ${IMAGE_NAME}:${IMAGE_VERSION} as base
 FROM base as base-amd64
 
 ARG IN_USERNAME=devuser
-ARG UID=${UID}
-ARG GID=${GID}
+ARG UID=${UID_VAR}
+ARG GID=${GID_VAR}
 ARG IN_CUDA_VERSION_NUMBER=11.6
 
 ARG PROJECT_NAME=pha-carlaware
@@ -54,7 +54,7 @@ RUN mkdir ${IN_SSI_PATH}
 RUN mkdir ${IN_SCRIPTS_PATH}
 
 ## Copy Scripts
-RUN mkdir ${IN_SCRIPTS_PATH}/setup
+RUN mkdir -p ${IN_SCRIPTS_PATH}/setup
 COPY docker_share/scripts/setup ${IN_SCRIPTS_PATH}/setup
 RUN mkdir ${IN_SCRIPTS_PATH}/install
 COPY docker_share/scripts/install ${IN_SCRIPTS_PATH}/install
@@ -96,6 +96,7 @@ RUN python3 -m pip install -r ${IN_SCRIPTS_PATH}/tmp/${PYTHON_REQUIREMENTS_FILE}
 # Install based on scripts
 RUN ["/bin/bash", "-c", "source /home/${IN_USERNAME}/.bashrc"]
 RUN ["/bin/bash", "-c", "source ${IN_SCRIPTS_PATH}/tmp/${SCRIPT_REQUIREMENTS_FILE} ${IN_USERNAME} ${IN_SSI_PATH} ${IN_ROS_VERSION} ${IN_CUDA_VERSION_NUMBER}"]
+
 # End - Install based on scripts
 
 # Remove Cache
