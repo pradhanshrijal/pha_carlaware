@@ -37,6 +37,8 @@ cd pha_docker_files
 if [[ -z "${PHA_HOME}" ]]; then
     echo "# PHA" >> /home/${USER}/.bashrc
     echo "source ${PHA_PARENT}/pha_docker_files/docker_share/scripts/setup/export_pha.sh" >> /home/${USER}/.bashrc
+    echo 'export PATH="${HOME}/.local/bin:$PATH"' >> /home/${USER}/.bashrc
+    source /home/${USER}/.bashrc
     echo "Setup PHA Home Path: ${PHA_HOME}"
 else
     echo "PHA Home already set: ${PHA_HOME}"
@@ -56,7 +58,8 @@ fi
 if [[ -z "${CARLAWARE_PHA}" ]]; then
     echo "# CARLAWARE" >> /home/${USER}/.bashrc
     echo "source ${ADDONS_PHA}/pha_carlaware/scripts/export_carlaware.sh" >> /home/${USER}/.bashrc
-    echo "Seutp CARLAWARE PHA Path: ${CARLAWARE_PHA}"
+    source /home/${USER}/.bashrc
+    echo "Setup CARLAWARE PHA Path: ${CARLAWARE_PHA}"
 else
     echo "CARLAWARE PHA Path already set: ${CARLAWARE_PHA}"
 fi
