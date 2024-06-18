@@ -50,7 +50,7 @@ RUN groupadd --gid $GID $IN_USERNAME \
 RUN ["/bin/bash", "-c", "cp -r /autoware /home/${IN_USERNAME}/."]
 RUN ["/bin/bash", "-c", "chown -R ${UID}:${GID} /home/${IN_USERNAME}/autoware"]
 
-RUN mkdir ${IN_SSI_PATH}
+RUN mkdir -p ${IN_SSI_PATH}
 RUN mkdir ${IN_SCRIPTS_PATH}
 
 ## Copy Scripts
