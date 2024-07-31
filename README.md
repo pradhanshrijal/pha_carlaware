@@ -49,18 +49,74 @@ See [Building and Running](#building-and-running) for further instructions.
 
 [PHA Project] is just bunch of scripts coupled together to create containerized systems. This simple idea can be made very powerful if the installations are handled by multiple scripts that can be modularly plugged in and plugged out. L2 installations builds upon the previous set of instructions to help the user modify some simple variables to navigate the flexibility of the project.
 
-See []() for understanding the basic idea with a simple example.
+See [TODO](TODO) for understanding the basic idea with a simple example.
 
 # Installation L3
 
+The simple variables tweaking from [Installation L2](#installation-l2) are built upon 
+
 # Building and Running
 
-This section will help the user start Carlaware. It is divided into three sections: `Start Carla`, `Start Carlaware`, `Launch ROS`.
+This section will help the user start Carlaware. It is divided into three sections: `Start Carla`, `Setup Carlaware` and `Launch ROS`.
 
 > [!TIP]
 > Run Carla and Carlaware on separate computers for the best performance.
 
-# Launching Carlaware
+## Start Carla
+
+A simple run script is provided to run `Carla 0.9.15`.
+
+```
+cd $CARLAWARE_PHA/scripts
+./carla_run.sh
+```
+
+## Setup Carlaware
+
+The whole system can be setup with a single script. For the first run it take a while to complete the setup process.
+
+```
+cd $CARLAWARE_PHA/scripts
+source run_cwr.sh
+```
+
+For systems with multiple GPUs like the [NVIDIA DGX Platform] there is a sample script that run only the first two GPUs `0,1`.
+
+```
+cd $CARLAWARE_PHA/scripts
+source run_cwr_gpus.sh
+```
+
+> [!NOTE]
+> Once the setup is complete, running the same command will reinitialize the setup.
+> To restart the previous setup (i.e. when the pc is started again), run this command from the second time:
+> `docker start pha-carlaware-${USER}`
+
+Now you can enter the setup container:
+
+```
+docker exec -it pha-carlaware-${USER}
+```
+
+This is a space where all the setup in ready for the user.
+
+## Launch ROS
+
+To Launch the script, you have to go to the respective folder and run the launch script.
+
+```
+cd $OP_BRIDGE_ROOT/op_scripts
+```
+
+> [!NOTE]
+> If you are running the system of Two PCs, change IP of `SIMULATOR_LOCAL_HOST` to that of the Carla PC. 
+> Make sure you can ping the other PC.
+
+Launch Carlaware.
+
+```
+./cwr_exploration.sh
+```
 
 # Mentions
 
@@ -72,12 +128,14 @@ TODO: Hatem Darwesh
 - [Autoware]
 - [Carla]
 - [Docker]
+- [NVIDIA DGX Platform]
 - [PHA Docker Files]
 - [PHA Project]
 
 [Autoware]: https://github.com/autowarefoundation/autoware
 [Carla]: https://github.com/carla-simulator/carla
 [Docker]: https://www.docker.com/
+[NVIDIA DGX Platform]: https://www.nvidia.com/en-us/data-center/dgx-platform/
 [PHA Docker Files]: https://github.com/pradhanshrijal/pha_docker_files
 [PHA Project]: https://pradhanshrijal.github.io/pha-project/
 
@@ -87,4 +145,66 @@ TODO: Hatem Darwesh
 
 # Citation
 
-If you find this project useful in your research, please consider citing the original works:
+If you find this project useful in your research, please consider citing the original work:
+
+_CARLA: An Open Urban Driving Simulator_<br>Alexey Dosovitskiy, German Ros,
+Felipe Codevilla, Antonio Lopez, Vladlen Koltun; PMLR 78:1-16
+[[PDF](http://proceedings.mlr.press/v78/dosovitskiy17a/dosovitskiy17a.pdf)]
+[[talk](https://www.youtube.com/watch?v=xfyK03MEZ9Q&feature=youtu.be&t=2h44m30s)]
+
+
+```
+@inproceedings{Dosovitskiy17,
+  title = {{CARLA}: {An} Open Urban Driving Simulator},
+  author = {Alexey Dosovitskiy and German Ros and Felipe Codevilla and Antonio Lopez and Vladlen Koltun},
+  booktitle = {Proceedings of the 1st Annual Conference on Robot Learning},
+  pages = {1--16},
+  year = {2017}
+}
+```
+
+Darweesh, Hatem, Eijiro Takeuchi, and Kazuya Takeda."OpenPlanner 2.0: The Portable Open Source Planner for Autonomous Driving Applications." [2021 IEEE Intelligent Vehicles Symposium Workshops (IV Workshop)](https://ieeexplore.ieee.org/document/9669253). July 11-17, 2021. Nagoya, Japan.
+
+```
+@INPROCEEDINGS{9669253,
+  author={Darweesh, Hatem and Takeuchi, Eijiro and Takeda, Kazuya},
+  booktitle={2021 IEEE Intelligent Vehicles Symposium Workshops (IV Workshops)}, 
+  title={OpenPlanner 2.0: The Portable Open Source Planner for Autonomous Driving Applications}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={313-318},
+  keywords={Conferences;Roads;Tutorials;Markov processes;Planning;Trajectory;Autonomous vehicles},
+  doi={10.1109/IVWorkshops54471.2021.9669253}
+}
+```
+
+Darweesh, Hatem, Eijiro Takeuchi, Kazuya Takeda, Yoshiki Ninomiya, Adi Sujiwo, Luis Yoichi Morales, Naoki Akai, Tetsuo Tomizawa, and Shinpei Kato. "Open source integrated planner for autonomous navigation in highly dynamic environments." [Journal of Robotics and Mechatronics 29, no. 4](https://www.fujipress.jp/jrm/rb/robot002900040668/) (2017): 668-684.
+
+```
+@article{ Darweesh_2017jrm,
+	title={Open Source Integrated Planner for Autonomous Navigation in Highly Dynamic Environments},
+	author={Hatem Darweesh and Eijiro Takeuchi and Kazuya Takeda and Yoshiki Ninomiya and Adi Sujiwo and Luis Yoichi Morales and Naoki Akai and Tetsuo Tomizawa and Shinpei Kato},
+	journal={Journal of Robotics and Mechatronics},
+	volume={29},
+	number={4},
+	pages={668-684},
+	year={2017},
+	doi={10.20965/jrm.2017.p0668}
+}
+```
+
+Darweesh, Hatem, Eijiro Takeuchi, and Kazuya Takeda. "Estimating the Probabilities of Surrounding Vehicles’ Intentions and Trajectories using a Behavior Planner." [International journal of automotive engineering 10.4](https://www.jstage.jst.go.jp/article/jsaeijae/10/4/10_20194117/_article/-char/ja/) (2019): 299-308.
+
+```
+@article{Hatem Darweesh201920194117,
+  title={Estimating the Probabilities of Surrounding Vehicles’ Intentions and Trajectories using a Behavior Planner},
+  author={Hatem Darweesh and Eijiro Takeuchi and Kazuya Takeda},
+  journal={International Journal of Automotive Engineering},
+  volume={10},
+  number={4},
+  pages={299-308},
+  year={2019},
+  doi={10.20485/jsaeijae.10.4_299}
+}
+```
