@@ -53,7 +53,7 @@ See [Surfing Carlaware] for understanding the basic idea.
 
 # Installation L3
 
-The simple variables tweaking from [Installation L2](#installation-l2) are built upon 
+L3 instructions is very vast. This level expands the users knowledge from introduction to [Docker] and [ROS 2 - Humble] to the usage of [Autoware]. The simple variables tweaking from [Installation L2](#installation-l2) are built upon with an indepth information of the full functionality of PHA and it's components. Read through the [PHA Project] and the works of previous contributors in [Mentions](#mentions).
 
 # Building and Running
 
@@ -128,6 +128,8 @@ The main works were contributed by [Hatem Darweesh]. See the instructions for `h
 
 # Related Works
 
+Similar work is done by [TUMFTM/Carla-Autoware-Bridge]. Multiple vehicle launching has been made easy by [Zenoh with Carla and Autoware] but as of the time of writing the system only works with Ubuntu 20.04. 
+
 # Bibliography
 - [Autoware]
 - [Carla]
@@ -137,9 +139,12 @@ The main works were contributed by [Hatem Darweesh]. See the instructions for `h
 - [NVIDIA DGX Platform]
 - [PHA Docker Files]
 - [PHA Project]
+- [ROS 2 - Humble]
 - [Surfing Carlaware]
+- [TUMFTM/Carla-Autoware-Bridge]
 - [YT Autoware T1]
 - [YT Autoware T2]
+- [Zenoh with Carla and Autoware]
 
 [Autoware]: https://github.com/autowarefoundation/autoware
 [Carla]: https://github.com/carla-simulator/carla
@@ -150,9 +155,12 @@ The main works were contributed by [Hatem Darweesh]. See the instructions for `h
 [NVIDIA DGX Platform]: https://www.nvidia.com/en-us/data-center/dgx-platform/
 [PHA Docker Files]: https://github.com/pradhanshrijal/pha_docker_files
 [PHA Project]: https://pradhanshrijal.github.io/pha-project/
+[ROS 2 - Humble]: https://docs.ros.org/en/humble/index.html
 [Surfing Carlaware]: https://pradhanshrijal.github.io/blog/surfing-carlaware/
+[TUMFTM/Carla-Autoware-Bridge]: https://github.com/TUMFTM/Carla-Autoware-Bridge
 [YT Autoware T1]: https://www.youtube.com/watch?v=EFH-vVxn180&ab_channel=HatemDarweesh
 [YT Autoware T2]: https://www.youtube.com/watch?v=dxwwNacez7o&ab_channel=HatemDarweesh
+[Zenoh with Carla and Autoware]: https://autoware.org/running-multiple-autoware-powered-vehicles-in-carla-using-zenoh/
 
 # License
 
