@@ -139,12 +139,6 @@ Similar work is done by [TUMFTM/Carla-Autoware-Bridge]. Multiple vehicle launchi
 - [NVIDIA DGX Platform]
 - [PHA Docker Files]
 - [PHA Project]
-- [ROS 2 - Humble]
-- [Surfing Carlaware]
-- [TUMFTM/Carla-Autoware-Bridge]
-- [YT Autoware T1]
-- [YT Autoware T2]
-- [Zenoh with Carla and Autoware]
 
 [Autoware]: https://github.com/autowarefoundation/autoware
 [Carla]: https://github.com/carla-simulator/carla
@@ -155,12 +149,6 @@ Similar work is done by [TUMFTM/Carla-Autoware-Bridge]. Multiple vehicle launchi
 [NVIDIA DGX Platform]: https://www.nvidia.com/en-us/data-center/dgx-platform/
 [PHA Docker Files]: https://github.com/pradhanshrijal/pha_docker_files
 [PHA Project]: https://pradhanshrijal.github.io/pha-project/
-[ROS 2 - Humble]: https://docs.ros.org/en/humble/index.html
-[Surfing Carlaware]: https://pradhanshrijal.github.io/blog/surfing-carlaware/
-[TUMFTM/Carla-Autoware-Bridge]: https://github.com/TUMFTM/Carla-Autoware-Bridge
-[YT Autoware T1]: https://www.youtube.com/watch?v=EFH-vVxn180&ab_channel=HatemDarweesh
-[YT Autoware T2]: https://www.youtube.com/watch?v=dxwwNacez7o&ab_channel=HatemDarweesh
-[Zenoh with Carla and Autoware]: https://autoware.org/running-multiple-autoware-powered-vehicles-in-carla-using-zenoh/
 
 # License
 
