@@ -41,6 +41,13 @@ wget https://raw.githubusercontent.com/pradhanshrijal/pha_carlaware/master/scrip
 source setup_cwr.sh
 ```
 
+Alternatively use bitbucket:
+
+```
+wget https://bitbucket.org/pradhanshrijal/pha_carlaware/raw/main/scripts/setup_cwr.sh
+source setup_cwr.sh /home/${USER}/schreibtisch bitbucket.org
+```
+
 That's it, all the base requirements for the project are setup.
 
 See [Building and Running](#building-and-running) for further instructions.
