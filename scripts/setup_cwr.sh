@@ -6,6 +6,8 @@
 # Variables
 PHA_PARENT=$1
 PHA_PARENT="${PHA_PARENT:=/home/${USER}/schreibtisch}"
+PHA_DB=$2
+PHA_DB="${PHA_DB:=github.com}"
 #
 
 # Install Requirements
@@ -26,7 +28,7 @@ fi
 cd $PHA_PARENT
 
 if [ ! -d pha_docker_files ]; then
-    git clone https://github.com/pradhanshrijal/pha_docker_files --recursive
+    git clone https://${PHA_DB}/pradhanshrijal/pha_docker_files --recursive
     echo "Setup PHA Docker Files."
 else
     echo "PHA Docker Files already set."
@@ -49,7 +51,7 @@ fi
 cd ${ADDONS_PHA}
 
 if [ ! -d pha_carlaware ]; then
-    git clone https://github.com/pradhanshrijal/pha_carlaware --recursive
+    git clone https://${PHA_DB}/pradhanshrijal/pha_carlaware --recursive
     echo "Setup PHA CARLAWARE."
 else
     echo "PHA CARLAWARE already set."
@@ -115,14 +117,14 @@ else
 fi
 
 if [ ! -d op_bridge ]; then
-    git clone https://github.com/pradhanshrijal/op_bridge -b ros2-humble
+    git clone https://${PHA_DB}/pradhanshrijal/op_bridge
     echo "OP: Setup Bridge."
 else
     echo "OP: Bridge already set."
 fi
 
 if [ ! -d op_agent ]; then
-    git clone https://github.com/pradhanshrijal/op_agent -b ros2-humble
+    git clone https://${PHA_DB}/pradhanshrijal/op_agent
     echo "OP: Setup Agent."
 else
     echo "OP: Agent already set."
