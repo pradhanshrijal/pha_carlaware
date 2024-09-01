@@ -47,13 +47,13 @@ See [Building and Running](#building-and-running) for further instructions.
 
 # Installation L2
 
-[PHA Project] is just bunch of scripts coupled together to create containerized systems. This simple idea can be made very powerful if the installations are handled by multiple scripts that can be modularly plugged in and plugged out. L2 installations builds upon the previous set of instructions to help the user modify some simple variables to navigate the flexibility of the project.
+L2 installations builds upon the previous set of instructions to help the user modify some simple variables to navigate the flexibility of the project. [PHA Project] is just bunch of scripts coupled together to create containerized systems. This simple idea can be made very powerful if the installations are handled by multiple scripts that can be modularly plugged in and plugged out.
 
-See [TODO](TODO) for understanding the basic idea with a simple example.
+See [Surfing Carlaware] for understanding the basic idea.
 
 # Installation L3
 
-The simple variables tweaking from [Installation L2](#installation-l2) are built upon 
+The simple variables tweaking from [Installation L2](#installation-l2) are built upon with an indepth information of the full functionality of PHA and it's components. Read through the [PHA Project] and the works of previous contributors in [Mentions](#mentions).
 
 # Building and Running
 
@@ -120,7 +120,11 @@ Launch Carlaware.
 
 # Mentions
 
-TODO: Hatem Darwesh
+The main works were contributed by [Hatem Darweesh]. See the instructions for `humble`:
+- [YT Autoware T1] -> Basic Instruction Video
+- [YT Autoware T2] -> Main Instructions for Setup
+- [Humble OP Instructions] -> Main Instructions for Autoware and Carla setup
+- [Initial OP Bridge] -> Initial Setup of Autoware and Carla
 
 # Related Works
 
@@ -128,16 +132,27 @@ TODO: Hatem Darwesh
 - [Autoware]
 - [Carla]
 - [Docker]
+- [Hatem Darweesh]
+- [Humble OP Instructions]
 - [NVIDIA DGX Platform]
 - [PHA Docker Files]
 - [PHA Project]
+- [Surfing Carlaware]
+- [YT Autoware T1]
+- [YT Autoware T2]
 
 [Autoware]: https://github.com/autowarefoundation/autoware
 [Carla]: https://github.com/carla-simulator/carla
 [Docker]: https://www.docker.com/
+[Hatem Darweesh]: https://github.com/hatem-darweesh
+[Humble OP Instructions]: https://github.com/ZATiTech/open_planner/tree/humble/op_carla_bridge
+[Initial OP Bridge]: https://github.com/orgs/autowarefoundation/discussions/2828
 [NVIDIA DGX Platform]: https://www.nvidia.com/en-us/data-center/dgx-platform/
 [PHA Docker Files]: https://github.com/pradhanshrijal/pha_docker_files
 [PHA Project]: https://pradhanshrijal.github.io/pha-project/
+[Surfing Carlaware]: https://pradhanshrijal.github.io/blog/surfing-carlaware/
+[YT Autoware T1]: https://www.youtube.com/watch?v=EFH-vVxn180&ab_channel=HatemDarweesh
+[YT Autoware T2]: https://www.youtube.com/watch?v=dxwwNacez7o&ab_channel=HatemDarweesh
 
 # License
 
