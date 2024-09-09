@@ -109,13 +109,6 @@ fi
 
 cd carla_awr
 
-if [ ! -d scenario_runner ]; then
-    git clone https://github.com/hatem-darweesh/scenario_runner -b openplanner_carla_bridge
-    echo "OP: Setup Scenario Runner."
-else
-    echo "OP: Scenario Runner already set."
-fi
-
 if [ ! -d op_bridge ]; then
     git clone https://${PHA_DB}/pradhanshrijal/op_bridge
     echo "OP: Setup Bridge."
@@ -129,6 +122,25 @@ if [ ! -d op_agent ]; then
 else
     echo "OP: Agent already set."
 fi
+##
+
+## Carla Repositories
+cd ${SIMULATORS_PHA}
+
+if [ ! -d carla_addons ]; then
+    mkdir carla_addons
+    echo "Setup Carla Addons."
+else
+    echo "Carla Addons already set."
+fi
+
+if [ ! -d scenario_runner ]; then
+    git clone https://github.com/carla-simulator/scenario_runner -b v0.9.15
+    echo "OP: Setup Scenario Runner."
+else
+    echo "OP: Scenario Runner already set."
+fi
+
 ##
 #
 

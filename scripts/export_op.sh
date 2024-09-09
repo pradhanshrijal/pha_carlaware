@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export AUTOWARE_ROOT=/home/${USER}/autoware
-export SCENARIO_RUNNER_ROOT=${SIMULATORS_DOCKER}/carla_awr/scenario_runner
+export SCENARIO_RUNNER_ROOT=${SIMULATORS_DOCKER}/carla_addons/scenario_runner
 export CARLA_ROOT=${SIMULATORS_DOCKER}/carla
 export OP_BRIDGE_ROOT=${SIMULATORS_DOCKER}/carla_awr/op_bridge
 export OP_AGENT_ROOT=${SIMULATORS_DOCKER}/carla_awr/op_agent
