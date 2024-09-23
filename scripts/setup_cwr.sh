@@ -97,6 +97,26 @@ else
 fi
 ##
 
+## Carla Addons
+cd ${SIMULATORS_PHA}
+
+if [ ! -d carla_addons ]; then
+    mkdir carla_addons
+    echo "Setup Addons for Carla."
+else
+    echo "Carla Addons folder already set."
+fi
+
+cd carla_addons
+
+if [ ! -d scenario_runner ]; then
+    git clone https://github.com/carla-simulator/scenario_runner -b v0.9.15
+    echo "CWR: Setup Scenario Runner."
+else
+    echo "CWR: Scenario Runner already set."
+fi
+##
+
 ## OpenPlanner Repositories
 cd ${SIMULATORS_PHA}
 
