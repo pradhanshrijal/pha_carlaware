@@ -12,7 +12,10 @@ This package is dedicated to make the installation of [Carla] and [Autoware] eas
     - Python 3.10
 - Carla Version: `0.9.15`
 - Autoware Version: `humble-2023.10-cuda-amd64`
-- PHA Version: `0.2.0`
+- PHA Version: `0.2.2`
+
+**Highlights**
+- `Carlaware` is version `0.1.3` (2024.02).
 
 # Content
 

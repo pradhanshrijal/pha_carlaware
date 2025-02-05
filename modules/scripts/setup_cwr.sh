@@ -1,17 +1,19 @@
 #!/bin/bash
 
 # Setup Carlaware
-# Sample: source setup_cwr.sh /home/pha/schreibtisch
+# Sample: source setup_cwr.sh /home/pha/schreibtisch github.com ${SSI_PATH}/files/datasets/autoware_data
 
 # Variables
 PHA_PARENT=$1
 PHA_PARENT="${PHA_PARENT:=/home/${USER}/schreibtisch}"
 PHA_DB=$2
 PHA_DB="${PHA_DB:=github.com}"
+CWR_DATA=$3
+CWR_DATA="${CWR_DATA:=${SSI_PATH}/files/datasets/autoware_data}"
 #
 
 # Install Requirements
-sudo apt install python3 python3-pip -y
+sudo apt install git git-lfs python3 python3-pip x11-xserver.utils -y
 python3 -m pip install gdown==4.6.1
 #
 
@@ -37,7 +39,7 @@ fi
 cd pha_docker_files
 
 if [[ -z "${PHA_HOME}" ]]; then
-    echo "# PHA" >> /home/${USER}/.bashrc
+    echo -e "\n# PHA" >> /home/${USER}/.bashrc
     echo "source ${PHA_PARENT}/pha_docker_files/docker_share/scripts/setup/export_pha.sh" >> /home/${USER}/.bashrc
     echo 'export PATH="${HOME}/.local/bin:$PATH"' >> /home/${USER}/.bashrc
     source /home/${USER}/.bashrc
@@ -58,8 +60,8 @@ else
 fi
 
 if [[ -z "${CARLAWARE_PHA}" ]]; then
-    echo "# CARLAWARE" >> /home/${USER}/.bashrc
-    echo "source ${ADDONS_PHA}/pha_carlaware/scripts/export_carlaware.sh" >> /home/${USER}/.bashrc
+    echo -e "\n# CARLAWARE" >> /home/${USER}/.bashrc
+    echo "source ${ADDONS_PHA}/pha_carlaware/modules/scripts/export_carlaware.sh" >> /home/${USER}/.bashrc
     source /home/${USER}/.bashrc
     echo "Setup CARLAWARE PHA Path: ${CARLAWARE_PHA}"
 else
@@ -207,27 +209,17 @@ fi
 
 # Autoware Datasets
 ## Dataset Path
-cd ${SSI_PATH}/files
 
-if [ ! -d datasets ]; then
-    mkdir datasets
-    echo "AW: Setup Dataset Path: ${SSI_PATH}/files/datasets"
+if [ ! -d "$CWR_DATA" ]; then
+    mkdir -p ${CWR_DATA}
+    echo "AW: Setup Dataset Path: ${CWR_DATA}"
 else
-    echo "AW: Dataset Path already set: ${SSI_PATH}/files/datasets"
-fi
-
-cd datasets
-
-if [ ! -d autoware_data ]; then
-    mkdir autoware_data
-    echo "AW: Setup Autoware Dataset Path: ${SSI_PATH}/files/datasets/autoware_data"
-else
-    echo "AW: Autoware Dataset Path already set: ${SSI_PATH}/files/datasets/autoware_data"
+    echo "AW: Dataset Path already set: ${CWR_DATA}"
 fi
 ##
 
 ## yabloc_pose_initializer
-cd autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d yabloc_pose_initializer ]; then
     mkdir yabloc_pose_initializer
@@ -246,7 +238,7 @@ fi
 ##
 
 ## image_projection_based_fusion
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d image_projection_based_fusion ]; then
     mkdir image_projection_based_fusion
@@ -264,7 +256,7 @@ fi
 ##
 
 ## lidar_apollo_instance_segmentation
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d lidar_apollo_instance_segmentation ]; then
     mkdir lidar_apollo_instance_segmentation
@@ -283,7 +275,7 @@ fi
 ##
 
 ## lidar_centerpoint
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d lidar_centerpoint ]; then
     mkdir lidar_centerpoint
@@ -303,7 +295,7 @@ fi
 ##
 
 ## tensorrt_yolo
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d tensorrt_yolo ]; then
     mkdir tensorrt_yolo
@@ -327,7 +319,7 @@ fi
 ##
 
 ## tensorrt_yolox
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d tensorrt_yolox ]; then
     mkdir tensorrt_yolox
@@ -349,7 +341,7 @@ fi
 ##
 
 ## traffic_light_classifier
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d traffic_light_classifier ]; then
     mkdir traffic_light_classifier
@@ -372,7 +364,7 @@ fi
 ##
 
 ## traffic_light_fine_detector
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d traffic_light_fine_detector ]; then
     mkdir traffic_light_fine_detector
@@ -392,7 +384,7 @@ fi
 ##
 
 ## traffic_light_ssd_fine_detector
-cd ${SSI_PATH}/files/datasets/autoware_data
+cd ${CWR_DATA}
 
 if [ ! -d traffic_light_ssd_fine_detector ]; then
     mkdir traffic_light_ssd_fine_detector
