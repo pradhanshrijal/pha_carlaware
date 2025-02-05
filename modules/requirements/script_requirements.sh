@@ -23,15 +23,32 @@ mkdir -p param/autoware_individual_params/individual_params/config/default/carla
 cp universe/external/open_planner/op_carla_bridge/carla_sensor_kit_launch/carla_sensor_kit_description/config/sensor_kit_calibration.yaml param/autoware_individual_params/individual_params/config/default/carla_sensor_kit/sensor_kit_calibration.yaml
 cp universe/external/open_planner/op_carla_bridge/carla_sensor_kit_launch/carla_sensor_kit_description/config/sensors_calibration.yaml param/autoware_individual_params/individual_params/config/default/carla_sensor_kit/sensors_calibration.yaml
 
+# Setup Scenario Runner
+cd /home/${IN_USERNAME}
+source /home/${IN_USERNAME}/.bashrc
+curl -O https://www.antlr.org/download/antlr-4.10.1-complete.jar
+sudo cp antlr-4.10.1-complete.jar /usr/local/lib/
+rm antlr-4.10.1-complete.jar
+
 # Setup Source Paths
 echo "source ${IN_SSI_PATH}/scripts/setup/export_docker_paths.sh" >> /home/${IN_USERNAME}/.bashrc
-echo "source ${IN_SSI_PATH}/git_pkgs/pha_addons/pha_carlaware/scripts/export_docker_carlaware.sh" >> /home/${IN_USERNAME}/.bashrc
-echo "source ${IN_SSI_PATH}/git_pkgs/pha_addons/pha_carlaware/scripts/export_op.sh" >> /home/${IN_USERNAME}/.bashrc
+echo "source ${IN_SSI_PATH}/git_pkgs/pha_addons/pha_carlaware/modules/scripts/export_docker_carlaware.sh" >> /home/${IN_USERNAME}/.bashrc
+echo "source ${IN_SSI_PATH}/git_pkgs/pha_addons/pha_carlaware/modules/scripts/export_op.sh" >> /home/${IN_USERNAME}/.bashrc
+
+echo -e "\n# Scenario Runner" >> /home/${IN_USERNAME}/.bashrc
+echo 'export CLASSPATH=".:/usr/local/lib/antlr-4.10.1-complete.jar:$CLASSPATH"' >> /home/${IN_USERNAME}/.bashrc
+echo "alias antlr4='java -jar /usr/local/lib/antlr-4.10.1-complete.jar'" >> /home/${IN_USERNAME}/.bashrc
+echo "alias grun='java org.antlr.v4.gui.TestRig'" >> /home/${IN_USERNAME}/.bashrc
+
+# Nebula Update
+cd /home/${IN_USERNAME}/autoware/src/sensor_component/external/nebula/nebula_decoders/include/nebula_decoders/nebula_decoders_velodyne/decoders/
+sed -i -e 's+<angles/angles/angles.h>+<angles/angles.h>+g' velodyne_scan_decoder.hpp
 
 # Install Autoware
 source /home/${IN_USERNAME}/.bashrc
 cd /home/${IN_USERNAME}/autoware
 rm -rf /install /log /build
+
 # sudo rosdep init
 rosdep update
 rosdep install -y --from-paths src --ignore-src --rosdistro ${IN_ROS_VERSION}
