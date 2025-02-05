@@ -62,8 +62,6 @@ RUN mkdir ${IN_SCRIPTS_PATH}/tmp
 COPY ${USER_REQUIREMENTS_PATH}/${APT_GET_REQUIREMENTS_FILE} ${IN_SCRIPTS_PATH}/tmp/
 COPY ${USER_REQUIREMENTS_PATH}/${PYTHON_REQUIREMENTS_FILE} ${IN_SCRIPTS_PATH}/tmp/
 COPY ${USER_REQUIREMENTS_PATH}/${SCRIPT_REQUIREMENTS_FILE} ${IN_SCRIPTS_PATH}/tmp/
-RUN mkdir -p ${IN_CARLAWARE_PATH}/scripts
-COPY docker_share/git_pkgs/pha_addons/pha_carlaware/scripts ${IN_CARLAWARE_PATH}/scripts
 
 RUN sudo cp /root/.bashrc /home/${IN_USERNAME}/.
 RUN sudo chown -R ${IN_USERNAME}:${IN_USERNAME} /home/${IN_USERNAME}/.bashrc
