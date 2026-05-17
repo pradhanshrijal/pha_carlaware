@@ -132,38 +132,20 @@ fi
 cd carla_awr
 
 if [ ! -d op_bridge ]; then
-    git clone https://${PHA_DB}/pradhanshrijal/op_bridge
+    git clone https://${PHA_DB}/pradhanshrijal/op_bridge -b ros2-humble
     echo "OP: Setup Bridge."
 else
     echo "OP: Bridge already set."
 fi
 
 if [ ! -d op_agent ]; then
-    git clone https://${PHA_DB}/pradhanshrijal/op_agent
+    git clone https://${PHA_DB}/pradhanshrijal/op_agent -b ros2-humble
     echo "OP: Setup Agent."
 else
     echo "OP: Agent already set."
 fi
 ##
 
-## Carla Repositories
-cd ${SIMULATORS_PHA}
-
-if [ ! -d carla_addons ]; then
-    mkdir carla_addons
-    echo "Setup Carla Addons."
-else
-    echo "Carla Addons already set."
-fi
-
-if [ ! -d scenario_runner ]; then
-    git clone https://github.com/carla-simulator/scenario_runner -b v0.9.15
-    echo "OP: Setup Scenario Runner."
-else
-    echo "OP: Scenario Runner already set."
-fi
-
-##
 #
 
 # OpenPlanner Weights
