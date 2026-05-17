@@ -15,7 +15,7 @@ This package is dedicated to make the installation of [Carla] and [Autoware] eas
 - PHA Version: `0.2.2`
 
 **Highlights**
-- `Carlaware` is version `0.1.3` (2024.02).
+- `Carlaware` is version `0.1.4` (2026.05).
 
 # Content
 
